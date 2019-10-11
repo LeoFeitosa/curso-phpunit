@@ -23,4 +23,23 @@ class CalculadoraTest extends TestCase
         $this->assertTrue(method_exists(Calculadora::class, 'getOperador'), "Falta o metodo getOperador");
         $this->assertTrue(method_exists(Calculadora::class, 'getResultado'), "Falta o metodo getResultado");
     }
+
+    /**
+    * @depends testAtributosCalculadora
+    */
+    public function testConstrutorCalculadora()
+    {
+        $this->assertTrue(method_exists(Calculadora::class, '__construct'), "Falta o metodo construtor em calculadora");
+
+        // verifica se construtor esta atribuindo valores
+        $calc = new Calculadora(4, 2, 'soma');
+        $this->assertEquals(4, $calc->getValorA(), "Erro no metodo getValorA");
+        $this->assertEquals(2, $calc->getValorB(), "Erro no metodo getValorB");
+        $this->assertEquals('soma', $calc->getOperador(), "Erro no metodo getOperador");
+
+        //acesso aos atributos privados
+        $this->assertFalse(isset($calc->valorA), "Erro atributo valorA deve ser privado");
+        $this->assertFalse(isset($calc->valorB), "Erro atributo valorB deve ser privado");
+        $this->assertFalse(isset($calc->operador), "Erro atributo operador deve ser privado");
+    }
 }
