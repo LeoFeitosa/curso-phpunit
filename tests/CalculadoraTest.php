@@ -12,4 +12,12 @@ class CalculadoraTest extends TestCase
         $this->assertClassHasAttribute('operador', Calculadora::class);
         $this->assertClassHasAttribute('resultado', Calculadora::class);
     }
+
+    public function testMetodosCalculadora()
+    {
+        $this->assertTrue(method_exists(Calculadora::class, 'getValorA'), "Falta o metodo getValorA");
+        $this->assertTrue(method_exists(Calculadora::class, 'getValorB'), "Falta o metodo getValorB");
+        $this->assertTrue(method_exists(Calculadora::class, 'getOperador'), "Falta o metodo getOperador");
+        $this->assertTrue(method_exists(Calculadora::class, 'getResultado'), "Falta o metodo getResultado");
+    }
 }
